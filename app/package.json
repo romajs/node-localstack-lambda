@@ -1,0 +1,28 @@
+{
+  "name": "node-localstack-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "dependencies": {
+    "chokidar-cli": "^2.0.0",
+    "pino": "^5.13.5",
+    "pino-pretty": "^3.2.2"
+  },
+  "devDependencies": {
+    "chokidar": "^3.2.2"
+  },
+  "scripts": {
+    "update-lambda": "./scripts/update-lambda.sh",
+    "update-lambda:watch": "chokidar \"./src/**\" -c \"npm run update-lambda\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romajs/node-localstack-lambda.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/romajs/node-localstack-lambda/issues"
+  },
+  "homepage": "https://github.com/romajs/node-localstack-lambda#readme"
+}

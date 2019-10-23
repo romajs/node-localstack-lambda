@@ -1,0 +1,32 @@
+version: '3'
+services:
+  localstack:
+    image: localstack/localstack
+    environment:
+      AWS_ACCESS_KEY_ID: foo
+      AWS_SECRET_ACCESS_KEY: bar
+      AWS_DEFAULT_REGION: us-east-1
+      DEBUG: "true"
+      DOCKER_HOST: unix:///var/run/docker.sock
+      SERVICES: lambda:4574,sns:4575,sqs:4576
+      LAMBDA_DOCKER_NETWORK: default
+      LAMBDA_EXECUTOR: docker
+      LAMBDA_REMOTE_DOCKER: "true"
+      MY_APP_DIR: /app
+      MY_FUNCTION_NAME: node-localstack-lambda
+      MY_QUEUE_NAME: node-localstack-lambda
+      MY_ZIP_FILE: /zip/code.zip
+    networks:
+      - default
+    ports:
+      - "4574-4576:4574-4576"
+      - "8080:8080"
+    volumes:
+      - ./app/:/app/
+      - ./docker-entrypoint-initaws.d:/docker-entrypoint-initaws.d
+      - /var/run/docker.sock:/var/run/docker.sock
+      - zip:/zip
+networks:
+  default:
+volumes:
+  zip:
